@@ -8,6 +8,10 @@ import { HomeComponent } from './components/home/home.component';
 import { ProtegidaComponent } from './components/protegida/protegida.component';
 import { PreciosComponent } from './components/precios/precios.component';
 import { CallbackComponent } from './components/callback/callback.component';
+import { HttpClientModule } from '@angular/common/http';
+import { GestionProductosService } from './services/gestion-productos.service';
+import { DetalleProductoComponent } from './components/detalle-producto/detalle-producto.component';
+
 
 @NgModule({
   declarations: [
@@ -16,13 +20,15 @@ import { CallbackComponent } from './components/callback/callback.component';
     HomeComponent,
     ProtegidaComponent,
     PreciosComponent,
-    CallbackComponent
+    CallbackComponent,
+    DetalleProductoComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [GestionProductosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
