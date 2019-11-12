@@ -6,14 +6,19 @@
           <div class="product-grid">
               <div class="product-image">
                   <a href="#">
-                      <img class="pic-1" src={{item.urlImagen}}>
-                      <img class="pic-2" src={{item.urlImagen}}>
+                      <!-- <img class="pic-1" src={{item.urlImagen}}>
+                      <img class="pic-2" src="https://exitocol.vteximg.com.br/arquivos/ids/596495-500-auto?width=500&height=auto&aspect=true"> -->
+
+                        <img class="pic-1" *ngIf="item.ImagenesArticulo.length > 0" [src]="item.ImagenesArticulo[0].Url">
+                        <img class="pic-2" *ngIf="item.ImagenesArticulo.length > 0" [src]="item.ImagenesArticulo[1].Url" >
+                            <!-- {{item.ImagenesArticulo}} -->
+
                   </a>
-                  <ul class="social">
+                  <!-- <ul class="social">
                       <li><a href="../../../../e2e/src/Images/carro.png" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
                       <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
                       <li><a href="../../../../e2e/src/Images/carro.png" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                  </ul>
+                  </ul> -->
                   <span class="product-new-label">Sale</span>
                   <span class="product-discount-label">20%</span>
               </div>
@@ -24,12 +29,13 @@
                   <li class="fa fa-star"></li>
                   <li class="fa fa-star disable"></li>
               </ul>
+
               <div class="product-content">
                   <h3 class="title"><a href="#">{{item.Nombre}}</a></h3>
                   <div class="price">${{item.Precio}}
                       <span>$20.00</span>
                   </div>
-                  <a class="add-to-cart" href="">+ Add To Cart</a>
+                  <a class="add-to-cart" [routerLink]="['/detalleproducto']" href="">+ Add To Cart</a>
               </div>
           </div>
       </div>
