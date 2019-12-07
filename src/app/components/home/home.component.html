@@ -31,11 +31,12 @@
               </ul>
 
               <div class="product-content">
-                  <h3 class="title"><a href="#">{{item.Nombre}}</a></h3>
+                  <h3 class="title"><a href=""  (click)="SeleccionarId(item.id)" [routerLink]="['/detalleproducto']">{{item.Nombre}}</a></h3>
                   <div class="price">${{item.Precio}}
                       <span>$20.00</span>
                   </div>
-                  <a class="add-to-cart" [routerLink]="['/detalleproducto']" href="">+ Add To Cart</a>
+                  <a class="add-to-cart"  (click)="AgregarACarrtito(item.id)"  href="">+ Add To Cart</a>
+
               </div>
           </div>
       </div>
@@ -43,5 +44,7 @@
 
 
   </div>
+
+
 </div>
 <hr>

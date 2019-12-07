@@ -25,4 +25,9 @@ export class GestionProductosService {
       map(this.ExtraerData)
     );
   }
+  ListarArticulosXId(id: number) {
+    return this.http.get(environment.EndPoint + '/Articulos?id='+ id , httpOptions).pipe(
+      map(this.ExtraerData)
+    );
+  }
 }
