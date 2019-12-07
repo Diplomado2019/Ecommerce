@@ -30,4 +30,16 @@ export class GestionProductosService {
       map(this.ExtraerData)
     );
   }
+
+  ListarCategorias() {
+    return this.http.get(environment.EndPoint + '/Categorias' , httpOptions).pipe(
+      map(this.ExtraerData)
+    );
+  }
+
+  ListarImagenesXCategoria(id: string) {
+    return this.http.get(environment.EndPoint + '/ArticulosXCategoria?id='+ id , httpOptions).pipe(
+      map(this.ExtraerData)
+    );
+  }
 }

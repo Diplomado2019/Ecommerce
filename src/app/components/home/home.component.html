@@ -1,7 +1,14 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <div class="container">
-  <h3 class="h3">shopping Demo-1 </h3>
+  <h3 class="h3">AlejaExpress </h3>
+  <span>Categoria:</span>
+  <select [(ngModel)]="CategoriaSeleccionada" (change)="ConsultarXCategoria()" >
+    <option value="0">Seleccione una categoria</option>
+    <option *ngFor="let cat of Categorias"  value="{{cat.id}}" >{{cat.Nombre}}</option>
+  </select>
+<br><br>
   <div class="row">
+
       <div class="col-md-3 col-sm-6" *ngFor="let item of Informacion">
           <div class="product-grid">
               <div class="product-image">
