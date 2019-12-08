@@ -34,8 +34,49 @@
     </ul>
     <span class="navbar-text">
 
-      <input type="button" class="botonimagen" value="" />
+      <input type="button" (click)="open(content)" class="botonimagen" value="" />
       <div class="texto-encima">{{cantidadcarrito}}</div>
+      <ng-template #content let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Carrito de compras</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+
+                <label for="Ttitul">Pendientes por confirmar</label>
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">idArticulo</th>
+                      <th scope="col">NombreArticulo</th>
+                      <th scope="col">Cantidad</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let item of articulos; index as i">
+                      <td scope="row">{{ i + 1 }}</td>
+                      <td>{{item.idArticulo}}</td>
+                      <td>{{item.NombreArticulo}}</td>
+                      <td>{{item.Cantidad}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div class="input-group-append">
+                      <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+                    </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+          </div>
+        </ng-template>
       <button *ngIf="!auth.loggedIn" (click)="auth.login()" class="btn btn-outline-primary">
         Ingresar
       </button>

@@ -1,5 +1,9 @@
 export interface DetalleCarrito {
-  Cantidad: number;
+  idArticulo: number;
+  NombreArticulo:string;
+  Descripcion: string;
+  Precio: number;
+  Cantidad:number;
 
 }
 

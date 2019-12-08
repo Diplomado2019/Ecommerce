@@ -42,7 +42,7 @@
                   <div class="price">${{item.Precio}}
                       <span>$20.00</span>
                   </div>
-                  <a class="add-to-cart"  (click)="AgregarACarrtito(item.id)"  href="">+ Add To Cart</a>
+                  <a class="add-to-cart"  (click)="this.nuevoArticulo(item.id,item.Nombre,item.Descripcion,item.Precio)"  href="">+ Add To Cart</a>
 
               </div>
           </div>

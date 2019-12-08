@@ -3,6 +3,7 @@ import { GestionProductosService } from './../../services/gestion-productos.serv
 import { Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CarritoUpdateService } from "../../services/carrito-update.service";
+import { DetalleCarrito } from "../../EnCarrito/carrito.module";
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { CarritoUpdateService } from "../../services/carrito-update.service";
 export class HomeComponent implements OnInit {
   @Output() messageEvent = new EventEmitter<string>();
 
-
+  DetalleCarro: DetalleCarrito;
   CategoriaSeleccionada: string = '';
   Informacion: any = [];
   Imagenes: any = [];
@@ -27,7 +28,6 @@ export class HomeComponent implements OnInit {
     //Listar Categorias
     this.Servicio.ListarCategorias().subscribe((datos: {}) => {
       this.Categorias = datos;
-
     });
 
   }
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
   }
 
 
-  AgregarACarrtito(idItem): void {
+  ContadorCarrito(): void {
     let cantidad = 0;
 
     if (localStorage.getItem('CantidadCarrito') === null) {
@@ -66,9 +66,8 @@ export class HomeComponent implements OnInit {
     }
 
     localStorage.setItem('CantidadCarrito', cantidad.toString());
-    localStorage.setItem('CantidadCarrito2', localStorage.getItem('CantidadCarrito'));
+    //localStorage.setItem('CantidadCarrito2', localStorage.getItem('CantidadCarrito'));
 
-    this.CarritoService.agregarItem(2);
 
   }
 
@@ -90,6 +89,26 @@ export class HomeComponent implements OnInit {
       localStorage.setItem('CantidadCarrito', '0');
 
     }
+   // this.DetalleCarro = this.CarritoService.nuevoArticulo();
+  }
+  nuevoArticulo(idArticulo,NombreArticulo,Descripcion,Precio): void {
+
+    this.ContadorCarrito();
+    const arr = JSON.parse(localStorage.getItem('datos3')) || [];
+    arr.push(this.CrearArticulo(idArticulo,NombreArticulo,Descripcion,Precio));
+    localStorage.setItem('datos3',JSON.stringify( arr));
+
+  }
+
+
+  CrearArticulo(idArticulo,NombreArticulo,Descripcion,Precio): DetalleCarrito {
+    return {
+      idArticulo: idArticulo,
+      NombreArticulo: NombreArticulo,
+      Descripcion:Descripcion,
+      Precio: Precio,
+      Cantidad:1
+    };
   }
 
 }
