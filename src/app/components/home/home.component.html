@@ -4,7 +4,7 @@
   <span>Categoria:</span>
   <select [(ngModel)]="CategoriaSeleccionada" (change)="ConsultarXCategoria()" >
     <option value="0">Seleccione una categoria</option>
-    <option *ngFor="let cat of Categorias"  value="{{cat.id}}" >{{cat.Nombre}}</option>
+    <option *ngFor="let cat of Categorias"  value="{{cat.id}}" >{{cat.nombre}}</option>
   </select>
 <br><br>
   <div class="row">
@@ -16,8 +16,8 @@
                       <!-- <img class="pic-1" src={{item.urlImagen}}>
                       <img class="pic-2" src="https://exitocol.vteximg.com.br/arquivos/ids/596495-500-auto?width=500&height=auto&aspect=true"> -->
 
-                        <img class="pic-1" *ngIf="item.ImagenesArticulo.length > 0" [src]="item.ImagenesArticulo[0].Url">
-                        <img class="pic-2" *ngIf="item.ImagenesArticulo.length > 0" [src]="item.ImagenesArticulo[1].Url" >
+                        <img class="pic-1" *ngIf="item.imagenesArticulo.length > 0" [src]="item.imagenesArticulo[0].url">
+                        <img class="pic-2" *ngIf="item.imagenesArticulo.length > 0" [src]="item.imagenesArticulo[1].url" >
                             <!-- {{item.ImagenesArticulo}} -->
 
                   </a>
@@ -38,11 +38,11 @@
               </ul>
 
               <div class="product-content">
-                  <h3 class="title"><a href=""  (click)="SeleccionarId(item.id)" [routerLink]="['/detalleproducto']">{{item.Nombre}}</a></h3>
-                  <div class="price">${{item.Precio}}
+                  <h3 class="title"><a href=""  (click)="SeleccionarId(item.id)" [routerLink]="['/detalleproducto']">{{item.nombre}}</a></h3>
+                  <div class="price">${{item.precio}}
                       <span>$20.00</span>
                   </div>
-                  <a class="add-to-cart"  (click)="this.nuevoArticulo(item.id,item.Nombre,item.Descripcion,item.Precio)"  href="">+ Add To Cart</a>
+                  <a class="add-to-cart"  (click)="this.nuevoArticulo(item.id,item.nombre,item.descripcion,item.precio)"  href="">+ Agregar a Carrito</a>
 
               </div>
           </div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import {DetalleCarrito  } from ".././EnCarrito/carrito.module";
+import {DetalleCarrito  } from "../Interfaces/carrito.module";
 
 @Injectable({
   providedIn: 'root'

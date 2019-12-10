@@ -34,7 +34,7 @@
     </ul>
     <span class="navbar-text">
 
-      <input type="button" (click)="open(content)" class="botonimagen" value="" />
+      <input type="button" (click)="openXl(content)" class="botonimagen" value="" />
       <div class="texto-encima">{{cantidadcarrito}}</div>
       <ng-template #content let-modal>
           <div class="modal-header">
@@ -55,26 +55,34 @@
                       <th scope="col">#</th>
                       <th scope="col">idArticulo</th>
                       <th scope="col">NombreArticulo</th>
+                      <th scope="col">ValorUnidad</th>
                       <th scope="col">Cantidad</th>
+                      <th scope="col">Subtotal</th>
+
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let item of articulos; index as i">
+                    <tr *ngFor="let item of articulos; index as i,index as total">
                       <td scope="row">{{ i + 1 }}</td>
                       <td>{{item.idArticulo}}</td>
                       <td>{{item.NombreArticulo}}</td>
+                      <td>{{item.Precio}}</td>
                       <td>{{item.Cantidad}}</td>
+                      <td>{{item.Cantidad*item.Precio}}</td>
                     </tr>
                     </tbody>
                   </table>
-                  <div class="input-group-append">
-                      <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
-                    </div>
+                Precio Total: {{PrecioTotal}}
               </div>
+
+              <div *ngIf="this.exito==1" class="alert alert-success">Pedido Registrado Con exito</div>
+
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Continuar Comprando</button>
+            <button type="button" class="btn btn-outline-dark" *ngIf="!auth.loggedIn" (click)="ConfirmarComprar()">Registrarse Para continuar</button>
+            <button type="button" class="btn btn-outline-dark" *ngIf="auth.loggedIn" (click)="modal.close('Save click')">Confirmar Compra</button>
           </div>
         </ng-template>
       <button *ngIf="!auth.loggedIn" (click)="auth.login()" class="btn btn-outline-primary">

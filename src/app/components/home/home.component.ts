@@ -3,7 +3,7 @@ import { GestionProductosService } from './../../services/gestion-productos.serv
 import { Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CarritoUpdateService } from "../../services/carrito-update.service";
-import { DetalleCarrito } from "../../EnCarrito/carrito.module";
+import { DetalleCarrito } from "../../Interfaces/carrito.module";
 
 @Component({
   selector: 'app-home',
@@ -54,18 +54,24 @@ export class HomeComponent implements OnInit {
     }
   }
 
+   sumar(valor1:number, valor2:number) {
+    return valor1+valor2;
+  }
 
-  ContadorCarrito(): void {
+  ContadorCarrito(Precio:number): void {
     let cantidad = 0;
-
+    var PrecioTotal =0
     if (localStorage.getItem('CantidadCarrito') === null) {
       localStorage.setItem('CantidadCarrito', '0');
       cantidad = 0;
     } else {
       cantidad = Number(localStorage.getItem('CantidadCarrito')) + 1;
+      PrecioTotal=Number(localStorage.getItem('PrecioTotal'))+Number(Precio);
+
     }
 
     localStorage.setItem('CantidadCarrito', cantidad.toString());
+    localStorage.setItem('PrecioTotal', PrecioTotal.toString());
     //localStorage.setItem('CantidadCarrito2', localStorage.getItem('CantidadCarrito'));
 
 
@@ -87,13 +93,16 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     if (localStorage.getItem('CantidadCarrito') === null) {
       localStorage.setItem('CantidadCarrito', '0');
+    }
 
+    if (localStorage.getItem('PrecioTotal') === null) {
+      localStorage.setItem('PrecioTotal', '0');
     }
    // this.DetalleCarro = this.CarritoService.nuevoArticulo();
   }
   nuevoArticulo(idArticulo,NombreArticulo,Descripcion,Precio): void {
 
-    this.ContadorCarrito();
+    this.ContadorCarrito(Precio);
     const arr = JSON.parse(localStorage.getItem('datos3')) || [];
     arr.push(this.CrearArticulo(idArticulo,NombreArticulo,Descripcion,Precio));
     localStorage.setItem('datos3',JSON.stringify( arr));
